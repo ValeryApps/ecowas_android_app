@@ -84,7 +84,7 @@ class StoryCard extends StatelessWidget {
                       Row(children: [
                         Icon(FontAwesomeIcons.clock),
                         SizedBox(
-                          width: 10,
+                          width: 5,
                         ),
                         Text("${timeago.format(story.datePublished)}")
                       ]),
@@ -92,7 +92,7 @@ class StoryCard extends StatelessWidget {
                         children: [
                           Icon(Icons.flag),
                           SizedBox(
-                            width: 10,
+                            width: 5,
                           ),
                           Text(story.country),
                         ],
@@ -101,7 +101,7 @@ class StoryCard extends StatelessWidget {
                         children: [
                           Icon(Icons.countertops),
                           SizedBox(
-                            width: 10,
+                            width: 5,
                           ),
                           Text(story.views.toString()),
                         ],

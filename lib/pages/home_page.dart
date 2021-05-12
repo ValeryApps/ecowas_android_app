@@ -10,6 +10,7 @@ import 'package:ecowas24/widgets/category_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key key}) : super(key: key);
+  static const String routeName = "home";
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -46,61 +47,86 @@ class _HomePageState extends State<HomePage> {
         Provider.of<StoryProvider>(context, listen: false).storyItems;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.green),
+        elevation: 0,
         title: Row(
           children: [
             Image.asset(
               "assets/ecowas24.png",
-              width: 60,
+              width: 40,
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
-            Text('Ecowas24 news'),
+            Text('Ecowas24 news',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold)),
           ],
         ),
+        actions: [
+          PopupMenuButton(
+            icon: Icon(Icons.more_vert),
+            itemBuilder: (item) => [
+              PopupMenuItem(
+                child: Text("Login"),
+                value: "Login",
+              )
+            ],
+          ),
+        ],
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Container(
-            height: 70,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: categories
-                  .map(
-                    (e) => CategoryWidget(
-                      text: e['cat'],
-                      color: e['color'],
-                      onTap: () {
-                        print(e['value']);
-                        Navigator.of(context).pushNamed(
-                            CategoryScreen.routeName,
-                            arguments: e['value']);
+      body: Container(
+        margin: EdgeInsets.symmetric(
+          vertical: 8.0,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Container(
+              height: 70,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: categories
+                    .map(
+                      (e) => CategoryWidget(
+                        text: e['cat'],
+                        color: e['color'],
+                        onTap: () {
+                          Navigator.of(context).pushNamed(
+                              CategoryScreen.routeName,
+                              arguments: e['value']);
+                        },
+                      ),
+                    )
+                    .toList(),
+              ),
+            ),
+            SizedBox(
+              height: 12,
+            ),
+            _isLoading
+                ? Center(child: CircularProgressIndicator())
+                : Expanded(
+                    child: ListView.builder(
+                      itemCount: stories.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        var story = stories[index];
+                        return ChangeNotifierProvider<Blog>.value(
+                          value: story,
+                          child: _isLoading
+                              ? Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : StoryCard(),
+                        );
                       },
                     ),
-                  )
-                  .toList(),
-            ),
-          ),
-          _isLoading
-              ? Center(child: CircularProgressIndicator())
-              : Expanded(
-                  child: ListView.builder(
-                    itemCount: stories.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var story = stories[index];
-                      return ChangeNotifierProvider<Blog>.value(
-                        value: story,
-                        child: _isLoading
-                            ? Center(
-                                child: CircularProgressIndicator(),
-                              )
-                            : StoryCard(),
-                      );
-                    },
                   ),
-                ),
-        ],
+          ],
+        ),
       ),
       drawer: AppDrawer(),
     );

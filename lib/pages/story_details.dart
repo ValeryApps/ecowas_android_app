@@ -27,24 +27,36 @@ class StoryDetails extends StatelessWidget {
     final Blog story = Provider.of<StoryProvider>(context).getStoryBySlug(slug);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(color: Colors.green),
+        elevation: 0,
         title: Row(
           children: [
             Image.asset(
               "assets/ecowas24.png",
-              width: 60,
+              width: 40,
             ),
             SizedBox(
-              width: 10,
+              width: 5,
             ),
-            Container(
-              width: MediaQuery.of(context).size.width * 3 / 5,
-              child: Text(
-                story.title,
-                overflow: TextOverflow.ellipsis,
-              ),
-            ),
+            Text('Ecowas24 news',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold)),
           ],
         ),
+        actions: [
+          PopupMenuButton(
+            icon: Icon(Icons.more_vert),
+            itemBuilder: (item) => [
+              PopupMenuItem(
+                child: Text("Login"),
+                value: "Login",
+              )
+            ],
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(color: Colors.white24),

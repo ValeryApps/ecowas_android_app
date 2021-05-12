@@ -18,11 +18,17 @@ class CountryListTile extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-                backgroundImage: AssetImage('icons/flags/png/$countryCode.png',
-                    package: 'country_icons')),
-            title: Text(country),
+              backgroundImage: AssetImage('icons/flags/png/$countryCode.png',
+                  package: 'country_icons'),
+            ),
+            title: Text(
+              country,
+              style: TextStyle(fontSize: 24, color: Colors.green),
+            ),
           ),
-          Divider()
+          Divider(
+            color: Colors.green,
+          )
         ],
       ),
     );

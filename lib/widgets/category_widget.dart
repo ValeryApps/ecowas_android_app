@@ -13,11 +13,14 @@ class CategoryWidget extends StatelessWidget {
       onTap: onTap,
       child: Container(
         alignment: Alignment.center,
+        decoration: BoxDecoration(
+            color: color,
+            borderRadius: BorderRadius.circular(10),
+            gradient: LinearGradient(colors: [Colors.black12, color])),
         child: Text(
           text,
           style: TextStyle(fontSize: 18, color: Colors.white),
         ),
-        color: color,
         margin: EdgeInsets.symmetric(
           vertical: 8.0,
           horizontal: 3.0,

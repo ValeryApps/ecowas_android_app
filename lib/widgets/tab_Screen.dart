@@ -42,30 +42,31 @@ class _TabScreenState extends State<TabScreen> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Theme.of(context).accentColor,
+        elevation: 10,
+        selectedItemColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.black54,
         currentIndex: _currentIndex,
         items: [
           _bottomTab(
             icon: Icons.home,
             text: "Home",
-            color: Theme.of(context).primaryColor,
+            color: Colors.white,
             size: 30,
           ),
           _bottomTab(
               icon: Icons.favorite,
               text: "Popular",
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
               size: 30),
           _bottomTab(
               icon: Icons.account_circle,
               text: "Auth",
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
               size: 30),
           _bottomTab(
               icon: Icons.build_circle,
               text: "About",
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
               size: 30),
         ],
         onTap: _onTap,
