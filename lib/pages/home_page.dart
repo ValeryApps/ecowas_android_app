@@ -19,6 +19,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   bool _isInitial = true;
   bool _isLoading = true;
+  bool _isError = false;
   @override
   void didChangeDependencies() async {
     if (_isInitial &&
@@ -30,7 +31,14 @@ class _HomePageState extends State<HomePage> {
       try {
         await Provider.of<StoryProvider>(context).fetchStories();
       } catch (e) {
-        print(e);
+        setState(() {
+          _isError = true;
+          _isLoading = false;
+        });
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(e.message),
+          backgroundColor: Theme.of(context).errorColor,
+        ));
       } finally {
         _isLoading = false;
         _isInitial = false;
@@ -116,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                         var story = stories[index];
                         return ChangeNotifierProvider<Blog>.value(
                           value: story,
-                          child: _isLoading
+                          child: _isError
                               ? Center(
                                   child: CircularProgressIndicator(),
                                 )

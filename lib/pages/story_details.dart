@@ -3,6 +3,7 @@ import 'package:ecowas24/models/stories_provider.dart';
 import 'package:ecowas24/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -67,15 +68,15 @@ class StoryDetails extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
-                story.title,
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
               Image(
                 image: CachedNetworkImageProvider(
                   story.imageUrl,
                   // fit: BoxFit.cover,
                 ),
+              ),
+              Text(
+                story.title,
+                style: GoogleFonts.textMeOne(fontSize: 32, fontWeight: FontWeight.bold),
               ),
               Container(
                 margin: EdgeInsets.only(top: 20),
@@ -107,16 +108,17 @@ class StoryDetails extends StatelessWidget {
               SizedBox(height: 15),
               Text(
                 story.intro,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: GoogleFonts.textMeOne(fontSize: 28,fontWeight: FontWeight.bold)
+                // TextStyle(fontSize: 20, fontWeight:
+                // FontWeight.bold, fontFamily: GoogleFonts.lato,
+                // ),
               ),
               SizedBox(
                 height: 20,
               ),
               Html(
                 data: story.body,
-                defaultTextStyle: TextStyle(
-                  fontSize: 20,
-                ),
+                defaultTextStyle: GoogleFonts.textMeOne(fontSize: 23)
               ),
               SizedBox(
                 height: 20,

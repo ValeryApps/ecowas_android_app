@@ -2,7 +2,6 @@ import 'package:ecowas24/models/Story.dart';
 import 'package:ecowas24/models/stories_provider.dart';
 import 'package:ecowas24/widgets/StoryCard.dart';
 import 'package:ecowas24/widgets/app_drawer.dart';
-import 'package:ecowas24/widgets/tab_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -86,7 +85,6 @@ class StoriesPerCountry extends StatelessWidget {
           ),
         ],
       ),
-      // bottomNavigationBar: TabScreen(),
       drawer: AppDrawer(),
     );
   }

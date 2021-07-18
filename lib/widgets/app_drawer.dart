@@ -1,5 +1,4 @@
 import 'package:ecowas24/constants/countries.dart';
-import 'package:ecowas24/pages/home_page.dart';
 import 'package:ecowas24/widgets/country_Listtile.dart';
 import 'package:flutter/material.dart';
 import 'package:ecowas24/pages/stories_per_country.dart';
@@ -44,6 +43,7 @@ class AppDrawer extends StatelessWidget {
                         countryCode: countries[index]['code'],
                         country: countries[index]['name'],
                         navigateTo: () {
+                          Navigator.of(context).pop();
                           Navigator.of(context).pushNamed(
                               StoriesPerCountry.routeName,
                               arguments: countries[index]['name']);

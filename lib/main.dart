@@ -1,7 +1,9 @@
 import 'package:ecowas24/models/stories_provider.dart';
 import 'package:ecowas24/pages/category_screen.dart';
 import 'package:ecowas24/pages/home_page.dart';
+import 'package:ecowas24/pages/on_the_web_news.dart';
 import 'package:ecowas24/pages/story_details.dart';
+import 'package:ecowas24/pages/webview_screen.dart';
 import 'package:ecowas24/widgets/tab_Screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +36,11 @@ class MyApp extends StatelessWidget {
           StoriesPerCountry.routeName: (cxt) => StoriesPerCountry(),
           CategoryScreen.routeName: (cxt) => CategoryScreen(),
           HomePage.routeName: (cxt) => HomePage(),
+          WebViewScreen.routeName: (cxt) => WebViewScreen(),
+          OnTheWebScreen.routeName: (cxt)=>OnTheWebScreen(),
         },
         debugShowCheckedModeBanner: false,
+
       ),
     );
   }

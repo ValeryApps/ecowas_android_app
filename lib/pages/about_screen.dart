@@ -1,7 +1,15 @@
 import 'package:ecowas24/widgets/app_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class AboutScreen extends StatelessWidget {
+  YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: '9R1RiGllzj0',
+    flags: YoutubePlayerFlags(
+      autoPlay: true,
+      mute: true,
+    ),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +45,10 @@ class AboutScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text(
-          "About Screen",
-          style: TextStyle(fontSize: 28),
-        ),
+      body: YoutubePlayer(
+        controller: _controller,
+        showVideoProgressIndicator: true,
+        progressIndicatorColor: Colors.amber,
       ),
       drawer: AppDrawer(),
     );

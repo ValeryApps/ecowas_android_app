@@ -1,8 +1,9 @@
-import 'package:ecowas24/pages/AuthScreen.dart';
+import 'package:ecowas24/pages/countresScreen.dart';
 import 'package:ecowas24/pages/about_screen.dart';
 import 'package:ecowas24/pages/home_page.dart';
 import 'package:ecowas24/pages/popular_stories_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TabScreen extends StatefulWidget {
   @override
@@ -13,7 +14,7 @@ class _TabScreenState extends State<TabScreen> {
   final List<Widget> _pages = [
     HomePage(),
     PopularStoriesScreen(),
-    AuthScreen(),
+    CountriesScreen(),
     AboutScreen(),
   ];
   int _currentIndex = 0;
@@ -54,18 +55,18 @@ class _TabScreenState extends State<TabScreen> {
             size: 30,
           ),
           _bottomTab(
-              icon: Icons.favorite,
+              icon: FontAwesomeIcons.heart,
               text: "Popular",
               color: Colors.white,
               size: 30),
           _bottomTab(
-              icon: Icons.account_circle,
+              icon: FontAwesomeIcons.newspaper,
               text: "Auth",
               color: Colors.white,
               size: 30),
           _bottomTab(
-              icon: Icons.build_circle,
-              text: "About",
+              icon: FontAwesomeIcons.video,
+              text: "Ecowas24 TV",
               color: Colors.white,
               size: 30),
         ],
