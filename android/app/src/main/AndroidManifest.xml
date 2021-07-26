@@ -2,7 +2,7 @@
     package="com.example.ecowas24">
     <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="ecowas24"
+        android:label="Ecowas24 News"
         android:icon="@mipmap/ic_launcher" 
         android:usesCleartextTraffic="true">
         

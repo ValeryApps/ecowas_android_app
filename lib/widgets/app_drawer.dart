@@ -18,7 +18,7 @@ class AppDrawer extends StatelessWidget {
               child: Row(
                 children: [
                   Image.asset(
-                    "assets/ecowas24.png",
+                    "assets/Ecowas24.png",
                     width: 100,
                   ),
                 ],
@@ -27,14 +27,9 @@ class AppDrawer extends StatelessWidget {
           ),
           Divider(),
           Container(
-            height: MediaQuery.of(context).size.height * 7 / 10,
+            height: MediaQuery.of(context).size.height * .7,
             child: Column(
               children: [
-                ListTile(
-                  leading: Icon(Icons.home),
-                  title: Text("Home"),
-                  onTap: () => Navigator.of(context).pop(),
-                ),
                 Expanded(
                   child: ListView.builder(
                     itemCount: countries.length,

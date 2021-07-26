@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 import "dart:convert" as convert;
 import 'package:dartx/dartx.dart';
@@ -7,13 +8,12 @@ import 'Story.dart';
 
 class StoryProvider with ChangeNotifier {
   List<Blog> _stories = [];
-
   List<Blog> get storyItems {
     return [..._stories];
   }
 
-  var pict =
-      "https://res.cloudinary.com/valeryguhena/image/upload/v1614007539/xdybyph4fijckdrq5zwu.jpg";
+
+
   Future<void> fetchStories() async {
     var url = Uri.parse("http://mobile.ecowas24.com/api/blogs");
     var response = await http.get(url);
@@ -22,7 +22,7 @@ class StoryProvider with ChangeNotifier {
     data.forEach((value) {
       var story = Blog(
         title: value["title"],
-        imageUrl: value["imageUrl"] ?? pict,
+        imageUrl: value["imageUrl"] ?? 'http://ecowas24.com/assets/e24.png',
         language: value["language"],
         author: value["author"],
         category: value["category"],
@@ -56,6 +56,6 @@ class StoryProvider with ChangeNotifier {
   }
 
   getFavoriteStories() {
-    return _stories.where((element) => element.views >= 5).toList();
+    return _stories.where((element) => element.views >= 15).toList();
   }
 }

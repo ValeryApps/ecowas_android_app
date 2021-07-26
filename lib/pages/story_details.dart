@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:cached_network_image/cached_network_image.dart';
@@ -34,7 +33,7 @@ class StoryDetails extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              "assets/ecowas24.png",
+              "assets/ecowas.png",
               width: 40,
             ),
             SizedBox(
@@ -83,10 +82,6 @@ class StoryDetails extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // Row(children: [Icon(Icons.language), Text(story.language)]),
-                    // SizedBox(
-                    //   width: 10,
-                    // ),
                     Row(children: [
                       Icon(FontAwesomeIcons.clock),
                       SizedBox(
@@ -94,7 +89,6 @@ class StoryDetails extends StatelessWidget {
                       ),
                       Text("${timeago.format(story.datePublished)}")
                     ]),
-
                     Row(children: [
                       Icon(FontAwesomeIcons.newspaper),
                       SizedBox(
@@ -109,24 +103,14 @@ class StoryDetails extends StatelessWidget {
               Text(
                 story.intro,
                 style: GoogleFonts.textMeOne(fontSize: 28,fontWeight: FontWeight.bold)
-                // TextStyle(fontSize: 20, fontWeight:
-                // FontWeight.bold, fontFamily: GoogleFonts.lato,
-                // ),
               ),
               SizedBox(
                 height: 20,
               ),
-              Html(
-                data: story.body,
-                defaultTextStyle: GoogleFonts.textMeOne(fontSize: 23)
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              TextButton.icon(
+               TextButton.icon(
                 onPressed: () => openInBrowser(story.externUrl),
                 label: Text(
-                  "Read more",
+                  "Read more...",
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 20,

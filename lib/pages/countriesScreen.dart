@@ -15,7 +15,7 @@ class CountriesScreen extends StatelessWidget {
        title: Row(
          children: [
            Image.asset(
-             "assets/ecowas24.png",
+             "assets/ecowas.png",
              width: 40,
            ),
            SizedBox(

@@ -1,5 +1,6 @@
-import 'package:ecowas24/pages/countresScreen.dart';
+
 import 'package:ecowas24/pages/about_screen.dart';
+import 'package:ecowas24/pages/countriesScreen.dart';
 import 'package:ecowas24/pages/home_page.dart';
 import 'package:ecowas24/pages/popular_stories_screen.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class _TabScreenState extends State<TabScreen> {
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+
         elevation: 10,
         selectedItemColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.black54,
@@ -51,23 +53,23 @@ class _TabScreenState extends State<TabScreen> {
           _bottomTab(
             icon: Icons.home,
             text: "Home",
-            color: Colors.white,
+            color: Colors.teal,
             size: 30,
           ),
           _bottomTab(
               icon: FontAwesomeIcons.heart,
               text: "Popular",
-              color: Colors.white,
+              color: Colors.teal,
               size: 30),
           _bottomTab(
               icon: FontAwesomeIcons.newspaper,
               text: "Auth",
-              color: Colors.white,
+              color: Colors.teal,
               size: 30),
           _bottomTab(
               icon: FontAwesomeIcons.video,
               text: "Ecowas24 TV",
-              color: Colors.white,
+              color: Colors.teal,
               size: 30),
         ],
         onTap: _onTap,

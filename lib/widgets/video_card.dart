@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecowas24/models/Story.dart';
-import 'package:ecowas24/pages/story_details.dart';
+import 'package:ecowas24/models/video.dart';
+import 'package:ecowas24/pages/video_details.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -8,18 +8,18 @@ import 'package:timeago/timeago.dart' as timeago;
 
 const url = "http://www.ecowas24.com/assets/e24.png";
 
-class StoryCard extends StatelessWidget {
+class VideoCard extends StatelessWidget {
 
 
-  selectStory(BuildContext context, String slug) {
-    Navigator.of(context).pushNamed(StoryDetails.routeName, arguments: slug);
+  selectVideo(BuildContext context, int id) {
+    Navigator.of(context).pushNamed(VideoDetails.routeName, arguments: id);
   }
 
   @override
   Widget build(BuildContext context) {
-    var story = Provider.of<Blog>(context);
+    var video = Provider.of<Video>(context);
     return InkWell(
-      onTap: () => selectStory(context, story.slug),
+      onTap: () => selectVideo(context, video.id),
       child: Container(
         margin: EdgeInsets.symmetric(
           horizontal: 8.0,
@@ -38,7 +38,10 @@ class StoryCard extends StatelessWidget {
                           topRight: Radius.circular(12)),
                       child: Image(
                         image: CachedNetworkImageProvider(
-                          story.imageUrl,
+                          video.thumbnailUrl,
+                          //maxWidth: double.infinity,
+                          //height: 250,
+                          //fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -51,7 +54,7 @@ class StoryCard extends StatelessWidget {
                               vertical: 28.0, horizontal: 12),
                           decoration: BoxDecoration(color: Colors.black54),
                           child: Text(
-                            story.title,
+                            video.title,
                             style: TextStyle(color: Colors.white, fontSize: 18),
                             overflow: TextOverflow.ellipsis,
                             softWrap: true,
@@ -72,7 +75,7 @@ class StoryCard extends StatelessWidget {
                         SizedBox(
                           width: 5,
                         ),
-                        Text("${timeago.format(story.datePublished)}")
+                        Text("${timeago.format(video.datePublished)}")
                       ]),
                       Row(
                         children: [
@@ -80,7 +83,7 @@ class StoryCard extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Text(story.country),
+                          Text(video.country ?? ""),
                         ],
                       ),
                       Row(
@@ -89,7 +92,7 @@ class StoryCard extends StatelessWidget {
                           SizedBox(
                             width: 5,
                           ),
-                          Text(story.views.toString()),
+                          Text(video.views.toString()),
                         ],
                       ),
                     ],

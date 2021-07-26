@@ -1,17 +1,43 @@
+import 'package:ecowas24/models/video.dart';
+import 'package:ecowas24/models/videos_provider.dart';
 import 'package:ecowas24/widgets/app_drawer.dart';
+import 'package:ecowas24/widgets/video_card.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:provider/provider.dart';
 
-class AboutScreen extends StatelessWidget {
-  YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: '9R1RiGllzj0',
-    flags: YoutubePlayerFlags(
-      autoPlay: true,
-      mute: true,
-    ),
-  );
+// ignore: must_be_immutable
+class AboutScreen extends StatefulWidget {
+  @override
+  _AboutScreenState createState() => _AboutScreenState();
+}
+
+class _AboutScreenState extends State<AboutScreen> {
+  bool _isInitial = true;
+  @override
+  void didChangeDependencies() async {
+    if (_isInitial &&
+        Provider.of<VideosProvider>(context).videoItems.length == 0) {
+      try {
+        await Provider.of<VideosProvider>(context).fetchVideos();
+      } catch (err) {
+        print(err);
+      } finally {
+        setState(() {
+          _isInitial = false;
+        });
+      }
+    } else {
+      setState(() {
+        _isInitial = false;
+      });
+    }
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
+    var videos = Provider.of<VideosProvider>(context).videoItems;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -20,7 +46,7 @@ class AboutScreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              "assets/ecowas24.png",
+              "assets/ecowas.png",
               width: 40,
             ),
             SizedBox(
@@ -45,10 +71,16 @@ class AboutScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: YoutubePlayer(
-        controller: _controller,
-        showVideoProgressIndicator: true,
-        progressIndicatorColor: Colors.amber,
+      body: ListView.builder(
+        itemCount: videos.length,
+        itemBuilder: (context, index) {
+          var video = videos[index];
+          return ChangeNotifierProvider<Video>.value(
+            value: video,
+            child: VideoCard(),
+          );
+          //
+        },
       ),
       drawer: AppDrawer(),
     );

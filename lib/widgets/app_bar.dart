@@ -1,3 +1,4 @@
+import 'package:ecowas24/pages/user.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -24,15 +25,16 @@ class CustomAppBar extends StatelessWidget {
         ],
       ),
       actions: [
-        PopupMenuButton(
-          icon: Icon(Icons.more_vert),
-          itemBuilder: (item) => [
-            PopupMenuItem(
-              child: Text("Login"),
-              value: "Login",
-            )
-          ],
-        ),
+        // PopupMenuButton(
+        //   icon: Icon(Icons.more_vert),
+        //   itemBuilder: (item) => [
+        //     PopupMenuItem(
+        //       child: Text("Login"),
+        //       value: "Login",
+        //     )
+        //   ],
+        // ),
+        IconButton(onPressed: ()=>Navigator.of(context).pushNamed(UserInfoScreen.routeName), icon: Icon(Icons.settings),),
       ],
     );
   }
